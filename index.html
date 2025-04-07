@@ -461,37 +461,199 @@
                 display: none;
             }
         }
+        
+        /* Language Toggle Button */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(218,196,148,0.2);
+            border: 1px solid #b29e6b;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #806c46;
+            font-size: 0.9rem;
+            z-index: 100;
+        }
+        
+        .language-toggle:hover {
+            background-color: rgba(218,196,148,0.4);
+        }
+        
+        /* RTL support for Arabic */
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .rtl nav ul {
+            flex-direction: row-reverse;
+        }
+        
+        /* Improved RTL timeline styling */
+        .rtl .timeline::after {
+            left: auto;
+            right: 50%;
+            margin-right: -1px;
+            margin-left: 0;
+        }
+        
+        .rtl .event-left {
+            left: auto;
+            right: 0;
+        }
+        
+        .rtl .event-right {
+            left: auto;
+            right: 50%;
+        }
+        
+        .rtl .event-left::after {
+            right: auto;
+            left: -13px;
+        }
+        
+        .rtl .event-right::after {
+            left: auto;
+            right: -13px;
+        }
+        
+        .rtl .event-content {
+            text-align: right;
+        }
+        
+        /* Fix for address display in Arabic version */
+        .location-address {
+            direction: ltr !important;
+            unicode-bidi: isolate !important;
+            text-align: left !important;
+            display: block;
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .rtl .location-address {
+            text-align: left !important;
+            margin-right: 0;
+            margin-left: auto;
+        }
+        
+        /* Make sure links in RTL mode are properly displayed */
+        .rtl .event-links {
+            direction: ltr;
+            unicode-bidi: isolate;
+            display: block;
+            text-align: left;
+        }
+        
+        /* Responsive adjustments for RTL at smaller screens */
+        @media screen and (max-width: 992px) {
+            .rtl .timeline::after {
+                right: 40px;
+                left: auto;
+                margin-right: 0;
+            }
+            
+            .rtl .event {
+                width: 100%;
+                padding-right: 80px;
+                padding-left: 30px;
+                right: 0;
+                left: auto;
+            }
+            
+            .rtl .event-left, 
+            .rtl .event-right {
+                right: 0;
+                left: auto;
+            }
+            
+            .rtl .event-left::after, 
+            .rtl .event-right::after {
+                right: 27px;
+                left: auto;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .rtl .timeline::after {
+                right: 31px;
+                left: auto;
+            }
+            
+            .rtl .event {
+                padding-right: 70px;
+                padding-left: 25px;
+            }
+            
+            .rtl .event-left::after, .rtl .event-right::after {
+                right: 18px;
+                left: auto;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .language-toggle {
+                top: 5px;
+                right: 5px;
+                padding: 3px 6px;
+                font-size: 0.8rem;
+            }
+            
+            .rtl .timeline::after {
+                right: 20px;
+                left: auto;
+            }
+            
+            .rtl .event {
+                padding-right: 45px;
+                padding-left: 10px;
+            }
+            
+            .rtl .event-left::after, .rtl .event-right::after {
+                right: 12px;
+                left: auto;
+            }
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button class="language-toggle" id="languageToggle">عربي</button>
+    
     <header>
             
-            <h1 class="names">BAHJAT NASRI</h1>
+            <h1 class="names" data-en="BAHJAT NASRI" data-ar="بهجت نصري">BAHJAT NASRI</h1>
             <span class="ampersand">&</span>
-            <h1 class="names">MARYAM ALDHAHAB</h1>
-            <div class="date">MAY 25, 2025</div>
-            <div class="location">Windsor, ON</div>
+            <h1 class="names" data-en="MARYAM ALDHAHAB" data-ar="مريم الذهب">MARYAM ALDHAHAB</h1>
+            <div class="date" data-en="MAY 25, 2025" data-ar="٢٥ مايو ٢٠٢٥">MAY 25, 2025</div>
+            <div class="location" data-en="Windsor, ON" data-ar="وندسور، أونتاريو">Windsor, ON</div>
             
             <div class="countdown">
                 <div class="countdown-container">
                     <div class="countdown-box">
                         <div id="days" class="countdown-number">48</div>
-                        <div class="countdown-label">days</div>
+                        <div class="countdown-label" data-en="days" data-ar="يوم">days</div>
                     </div>
                     <div class="countdown-box">
                         <div id="hours" class="countdown-number">2</div>
-                        <div class="countdown-label">hours</div>
+                        <div class="countdown-label" data-en="hours" data-ar="ساعة">hours</div>
                     </div>
                     <div class="countdown-box">
                         <div id="minutes" class="countdown-number">31</div>
-                        <div class="countdown-label">minutes</div>
+                        <div class="countdown-label" data-en="minutes" data-ar="دقيقة">minutes</div>
                     </div>
                     <div class="countdown-box">
                         <div id="seconds" class="countdown-number">16</div>
-                        <div class="countdown-label">seconds</div>
+                        <div class="countdown-label" data-en="seconds" data-ar="ثانية">seconds</div>
                     </div>
                 </div>
             </div>
@@ -501,9 +663,9 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#home" id="home-link">Home</a></li>
-                <li><a href="#schedule" id="schedule-link">Schedule</a></li>
-                <li><a href="#rsvp" id="rsvp-link">RSVP</a></li>
+                <li><a href="#home" id="home-link" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#schedule" id="schedule-link" data-en="Schedule" data-ar="جدول الحفل">Schedule</a></li>
+                <li><a href="#rsvp" id="rsvp-link" data-en="RSVP" data-ar="تأكيد الحضور">RSVP</a></li>
             </ul>
         </div>
     </nav>
@@ -511,20 +673,21 @@
     <div id="home" class="page">
         <div class="container">
             <div class="quote-section" style="text-align: center; padding: 30px 20px; background-color: rgba(248, 243, 231, 0.5); border-radius: 8px; margin-bottom: 40px;">
-                <p style="font-style: italic; font-size: 1.3rem; color: #806c46; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                <p style="font-style: italic; font-size: 1.3rem; color: #806c46; max-width: 800px; margin: 0 auto; line-height: 1.8;" data-en="&quot;So they are no longer two, but one flesh. Therefore what God has joined together, let man not separate.&quot;
+                " data-ar="&quot;فَيَصِيرُ الاِثْنَانِ جَسَداً وَاحِداً. فَلا يَكُونَانِ بَعْدُ اثْنَيْنِ بَلْ جَسَداً وَاحِداً فَمَا جَمَعَهُ اللهُ لَا يُفَرِّقُهُ إِنْسَانٌ.&quot;">
                     "So they are no longer two, but one flesh. Therefore what God has joined together, let man not separate."
                 </p>
-                <p style="color: #a98c52; margin-top: 10px;">Mark 10:8-9</p>
+                <p style="color: #a98c52; margin-top: 10px;" data-en="Mark 10:8-9" data-ar="مرقس ٨:١٠-٩">Mark 10:8-9</p>
             </div>
             
-            <h2>Our Wedding</h2>
+            <h2 data-en="Our Wedding" data-ar="حفل زفافنا">Our Wedding</h2>
             <div class="floral-divider"></div>
             <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 20px 0;">
-                <p style="margin-bottom: 20px; color: #5a5a5a; line-height: 1.8;">
+                <p style="margin-bottom: 20px; color: #5a5a5a; line-height: 1.8;" data-en="We are thrilled to invite you to celebrate our wedding day with us. It's a day we've been dreaming of, and we can't wait to share it with our closest friends and family." data-ar="يسعدنا أن ندعوكم للاحتفال بيوم زفافنا معنا. إنه يوم طالما حلمنا به، ولا يمكننا الانتظار لمشاركته مع أقرب أصدقائنا وعائلاتنا.">
                     We are thrilled to invite you to celebrate our wedding day with us. 
                     It's a day we've been dreaming of, and we can't wait to share it with our closest friends and family.
                 </p>
-                <p style="color: #5a5a5a; line-height: 1.8;">
+                <p style="color: #5a5a5a; line-height: 1.8;" data-en="Join us for a day of love, joy, and celebration as we begin our journey together as husband and wife." data-ar="انضموا إلينا في يوم مليء بالحب والفرح والاحتفال حيث نبدأ رحلتنا معًا كزوج وزوجة.">
                     Join us for a day of love, joy, and celebration as we begin our journey together as husband and wife.
                 </p>
             </div>
@@ -535,36 +698,36 @@
     
     <div id="schedule" class="page">
         <div class="container">
-            <h2>Wedding Day Schedule</h2>
+            <h2 data-en="Wedding Day Schedule" data-ar="جدول يوم الزفاف">Wedding Day Schedule</h2>
             <div class="floral-divider"></div>
             
             <div class="timeline">
                 <div class="event event-left">
                     <div class="event-content">
-                        <h3>Ceremony</h3>
-                        <p class="time">4:00 PM - 5:30 PM</p>
-                        <p><strong>Join us as we exchange vows and celebrate our union.</strong></p>
+                        <h3 data-en="Ceremony" data-ar="مراسم الزفاف">Ceremony</h3>
+                        <p class="time" data-en="4:00 PM - 5:30 PM" data-ar="٤:٠٠ مساءً - ٥:٣٠ مساءً">4:00 PM - 5:30 PM</p>
+                        <p data-en="<strong>Join us as we exchange vows and celebrate our union.</strong>" data-ar="<strong>انضموا إلينا ونحن نتبادل العهود ونحتفل بزواجنا.</strong>"><strong>Join us as we exchange vows and celebrate our union.</strong></p>
                         <p style="margin-top: 20px;"></p>
-                        <p><strong>Holy Family Chaldean Catholic Church</strong></p>
-                        <p><strong>686 Marentette Ave, Windsor, ON N9A 1Z4, Canada</strong></p>
+                        <p data-en="<strong>Holy Family Chaldean Catholic Church</strong>" data-ar="<strong>كنيسة العائلة المقدسة الكلدانية الكاثوليكية</strong>"><strong>Holy Family Chaldean Catholic Church</strong></p>
+                        <p class="location-address"><strong>686 Marentette Ave, Windsor, ON N9A 1Z4, Canada</strong></p>
                         <p class="event-links">
-                            <a href="https://maps.google.com/?q=686+Marentette+Ave,+Windsor,+ON+N9A+1Z4,+Canada" target="_blank">Map</a> | 
-                            <a href="#" class="add-to-calendar" data-event="ceremony">Add to calendar</a>
+                            <a href="https://maps.google.com/?q=686+Marentette+Ave,+Windsor,+ON+N9A+1Z4,+Canada" target="_blank" data-en="Map" data-ar="الخريطة">Map</a> | 
+                            <a href="#" class="add-to-calendar" data-event="ceremony" data-en="Add to calendar" data-ar="أضف إلى التقويم">Add to calendar</a>
                         </p>
                     </div>
                 </div>
                 
                 <div class="event event-right">
                     <div class="event-content">
-                        <h3>Wedding Party</h3>
-                        <p class="time">7:00 PM</p>
-                        <p><strong>Dinner, speeches, and dancing to celebrate our new journey together.</strong></p>
+                        <h3 data-en="Wedding Party" data-ar="حفل الزفاف">Wedding Party</h3>
+                        <p class="time" data-en="7:00 PM" data-ar="٧:٠٠ مساءً">7:00 PM</p>
+                        <p data-en="<strong>Dinner, speeches, and dancing to celebrate our new journey together.</strong>" data-ar="<strong>عشاء وكلمات ورقص للاحتفال برحلتنا الجديدة معًا.</strong>"><strong>Dinner, speeches, and dancing to celebrate our new journey together.</strong></p>
                         <p style="margin-top: 20px;"></p>
-                        <p><strong>Ciociaro Club</strong></p>
-                        <p><strong>3745 N Talbot Rd, Oldcastle (Windsor), ON N0R 1L0, Canada</strong></p>
+                        <p data-en="<strong>Ciociaro Club</strong>" data-ar="<strong>نادي سيوسيارو</strong>"><strong>Ciociaro Club</strong></p>
+                        <p class="location-address"><strong>3745 N Talbot Rd, Oldcastle (Windsor), ON N0R 1L0, Canada</strong></p>
                         <p class="event-links">
-                            <a href="https://maps.google.com/?q=3745+N+Talbot+Rd,+Oldcastle,+ON+N0R+1L0,+Canada" target="_blank">Map</a> | 
-                            <a href="#" class="add-to-calendar" data-event="reception">Add to calendar</a>
+                            <a href="https://maps.google.com/?q=3745+N+Talbot+Rd,+Oldcastle,+ON+N0R+1L0,+Canada" target="_blank" data-en="Map" data-ar="الخريطة">Map</a> | 
+                            <a href="#" class="add-to-calendar" data-event="reception" data-en="Add to calendar" data-ar="أضف إلى التقويم">Add to calendar</a>
                         </p>
                     </div>
                 </div>
@@ -576,7 +739,7 @@
     
     <div id="rsvp" class="page">
         <div class="container">
-            <h2>RSVP</h2>
+            <h2 data-en="RSVP" data-ar="تأكيد الحضور">RSVP</h2>
             <div class="floral-divider"></div>
             
             <div class="rsvp-form">
@@ -594,36 +757,36 @@
                     <input type="hidden" name="_subject" value="New RSVP Submission!">
                     
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName" data-en="First Name" data-ar="الاسم الأول">First Name</label>
                         <input type="text" id="firstName" name="firstName" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName" data-en="Last Name" data-ar="اسم العائلة">Last Name</label>
                         <input type="text" id="lastName" name="lastName" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     
                     <!-- Removed the "Will you be attending?" section -->
                     
                     <div class="form-group">
-                        <label for="guests">Number of Guests (including yourself)</label>
+                        <label for="guests" data-en="Number of Guests (including yourself)" data-ar="عدد الضيوف (بما في ذلك نفسك)">Number of Guests (including yourself)</label>
                         <input type="number" id="guests" name="guests" min="1" max="10" value="1" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Message to the Couple (Optional)</label>
+                        <label for="message" data-en="Message to the Couple (Optional)" data-ar="رسالة للعروسين (اختياري)">Message to the Couple (Optional)</label>
                         <input type="text" id="message" name="message">
                     </div>
                     
-                    <button type="submit">Submit RSVP</button>
+                    <button type="submit" data-en="Submit RSVP" data-ar="إرسال تأكيد الحضور">Submit RSVP</button>
                 </form>
                 
-                <p class="deadline">Please RSVP by May 11, 2025</p>
+                <p class="deadline" data-en="Please RSVP by May 11, 2025" data-ar="يرجى تأكيد الحضور قبل ١١ مايو ٢٠٢٥">Please RSVP by May 11, 2025</p>
             </div>
         </div>
     </div>
@@ -632,14 +795,14 @@
     
     <footer>
         <div class="container">
-            <p> CONTACT US</p>
-            <p>For any questions or concerns, please reach out to us at:</p>
-            <p>Email: bahjatsaher26@gmail.com</p>
+            <p data-en="CONTACT US" data-ar="اتصل بنا">CONTACT US</p>
+            <p data-en="For any questions or concerns, please reach out to us at:" data-ar="لأية أسئلة أو استفسارات، يرجى التواصل معنا على:">For any questions or concerns, please reach out to us at:</p>
+            <p data-en="Email: bahjatsaher26@gmail.com" data-ar="البريد الإلكتروني: bahjatsaher26@gmail.com">Email: bahjatsaher26@gmail.com</p>
 
-            <p>Groom's Mother: +1 (226) 506-8270</p>
-            <p>Bride's Aunt: +1 (647) 836-7747</p>
+            <p data-en="Groom's Mother: +1 (226) 506-8270" data-ar="والدة العريس: +1 (226) 506-8270">Groom's Mother: +1 (226) 506-8270</p>
+            <p data-en="Bride's Aunt: +1 (647) 836-7747" data-ar="خالة العروس: +1 (647) 836-7747">Bride's Aunt: +1 (647) 836-7747</p>
             <p style="margin: 20px 0;" class="hashtag">#bahjat&maryam</p>
-            <p style="margin: 20px 0;">Website designed by Salwan Aldhahab</p>
+            <p style="margin: 20px 0;" data-en="Website designed by Salwan Aldhahab" data-ar="تم تصميم الموقع بواسطة سلوان الذهب">Website designed by Salwan Aldhahab</p>
         </div>
     </footer>
 
@@ -779,6 +942,45 @@
                 link.style.padding = '10px 15px';
             });
         }
+        
+        // Language toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            let currentLang = 'en'; // Default language is English
+            
+            languageToggle.addEventListener('click', function() {
+                // Toggle language
+                if (currentLang === 'en') {
+                    currentLang = 'ar';
+                    document.body.classList.add('rtl');
+                    languageToggle.textContent = 'English';
+                } else {
+                    currentLang = 'en';
+                    document.body.classList.remove('rtl');
+                    languageToggle.textContent = 'عربي';
+                }
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-en]').forEach(element => {
+                    // Special handling for elements with HTML content
+                    if (element.getAttribute(`data-${currentLang}`).includes('<')) {
+                        element.innerHTML = element.getAttribute(`data-${currentLang}`);
+                    } else {
+                        element.textContent = element.getAttribute(`data-${currentLang}`);
+                    }
+                });
+                
+                // Store language preference
+                localStorage.setItem('preferredLanguage', currentLang);
+            });
+            
+            // Check for stored language preference
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang === 'ar') {
+                // Trigger click to switch to Arabic
+                languageToggle.click();
+            }
+        });
     </script>
 </body>
 </html>
