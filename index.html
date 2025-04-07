@@ -16,12 +16,15 @@
             background-color: #fff;
             color: #5a5a5a;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         header {
@@ -29,6 +32,19 @@
             padding: 40px 0;
             text-align: center;
             border-bottom: 1px solid rgba(218,196,148,0.5);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Floral divider that works on all screen sizes */
+        .floral-divider {
+            height: 30px;
+            margin: 30px auto;
+            max-width: 80%; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0,5 H40 M60,5 H100' stroke='%23dac494' stroke-width='1'/%3E%3Ccircle cx='50' cy='5' r='5' fill='%23b29e6b' fill-opacity='0.2'/%3E%3Cpath d='M46,5 C48,3 52,3 54,5' stroke='%23806c46' stroke-width='0.5' fill='none'/%3E%3Cpath d='M46,5 C48,7 52,7 54,5' stroke='%23806c46' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
         }
         
         .names {
@@ -56,16 +72,23 @@
             color: #a98c52;
         }
         
+        /* Enhanced Navigation for All Screens */
         nav {
             background-color: rgba(218,196,148,0.1);
             padding: 15px 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         nav ul li {
@@ -76,34 +99,45 @@
             text-decoration: none;
             color: #806c46;
             font-size: 1.2rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
         }
         
         nav ul li a:hover {
             color: #b29e6b;
+            background-color: rgba(218,196,148,0.1);
         }
         
         .active {
             border-bottom: 2px solid #b29e6b;
+            font-weight: bold;
         }
         
+        /* Responsive page sections */
         .page {
-            padding: 60px 0;
-            min-height: 70vh;
+            padding: 40px 0;
+            min-height: 50vh;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
         }
         
         .page h2 {
             text-align: center;
             color: #806c46;
-            font-size: 2.5rem;
+            font-size: calc(1.8rem + 1vw); /* Responsive font size */
             margin-bottom: 40px;
+            word-wrap: break-word;
         }
         
-        /* Schedule Page */
+        /* Responsive Schedule Timeline */
         .timeline {
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .timeline::after {
@@ -153,11 +187,12 @@
         }
         
         .event-content {
-            padding: 20px 40px;
+            padding: 20px clamp(10px, 5vw, 40px);
             background-color: rgba(248, 243, 231, 0.7);
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             width: 100%;
+            box-sizing: border-box;
         }
         
         .event-content h3 {
@@ -171,7 +206,7 @@
             margin-bottom: 10px;
         }
         
-        /* RSVP Page */
+        /* Responsive RSVP Form */
         .rsvp-form {
             max-width: 600px;
             margin: 0 auto;
@@ -179,6 +214,7 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 90%;
         }
         
         .form-group {
@@ -190,6 +226,7 @@
             margin-bottom: 8px;
             color: #806c46;
             font-weight: bold;
+            font-size: 16px;
         }
         
         .form-group input,
@@ -200,6 +237,8 @@
             border-radius: 4px;
             font-size: 16px;
             color: #5a5a5a;
+            -webkit-appearance: none; /* Remove default styling on iOS */
+            appearance: none;
         }
         
         .deadline {
@@ -209,17 +248,22 @@
             font-style: italic;
         }
         
+        /* Better responsive button */
         button {
             background-color: #b29e6b;
             color: white;
             border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            padding: clamp(10px, 3vw, 12px) clamp(16px, 5vw, 24px);
+            font-size: clamp(14px, 3vw, 16px);
             border-radius: 4px;
             cursor: pointer;
             display: block;
             margin: 30px auto 0;
             transition: background-color 0.3s;
+            width: auto;
+            min-width: 150px;
+            max-width: 100%;
+            touch-action: manipulation; /* Better touch behavior */
         }
         
         button:hover {
@@ -241,32 +285,61 @@
         .countdown {
             text-align: center;
             margin: 20px 0;
+            width: 100%;
         }
         
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: clamp(5px, 2vw, 20px); /* Responsive gap */
+            flex-wrap: wrap;
         }
         
         .countdown-box {
             background-color: rgba(218,196,148,0.2);
-            padding: 10px;
+            padding: clamp(5px, 2vw, 10px);
             border-radius: 5px;
-            min-width: 70px;
+            min-width: clamp(50px, 15vw, 70px);
         }
         
         .countdown-number {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-weight: bold;
             color: #806c46;
         }
         
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
             color: #a98c52;
         }
         
+        /* Make images responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Enhanced media queries for multiple breakpoints */
+        @media screen and (max-width: 992px) {
+            .timeline::after {
+                left: 40px;
+            }
+            
+            .event {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 30px;
+            }
+            
+            .event-right {
+                left: 0;
+            }
+            
+            .event-left::after, .event-right::after {
+                left: 27px;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             .names {
                 font-size: 2.2rem;
@@ -277,11 +350,12 @@
             }
             
             nav ul {
-                flex-direction: column;
+                flex-direction: row; /* Keep horizontal on medium screens */
+                justify-content: center;
             }
             
             nav ul li {
-                margin: 5px 0;
+                margin: 5px 10px;
             }
             
             .timeline::after {
@@ -300,6 +374,91 @@
             
             .event-left::after, .event-right::after {
                 left: 18px;
+            }
+        }
+        
+        /* Small screens like phones */
+        @media screen and (max-width: 480px) {
+            .names {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .date {
+                font-size: 1.2rem;
+            }
+            
+            .location {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column; /* Stack vertically on very small screens */
+                gap: 5px;
+            }
+            
+            nav ul li {
+                margin: 2px 0;
+            }
+            
+            .timeline::after {
+                left: 20px;
+            }
+            
+            .event {
+                padding-left: 45px;
+                padding-right: 10px;
+            }
+            
+            .event-left::after, .event-right::after {
+                width: 15px;
+                height: 15px;
+                left: 12px;
+            }
+            
+            .rsvp-form {
+                padding: 20px 15px;
+            }
+            
+            .quote-section {
+                padding: 20px 10px !important;
+            }
+            
+            .quote-section p {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Ensure form accessibility on touch devices */
+        @media (hover: none) {
+            input, select, button {
+                min-height: 44px; /* Minimum touch target size */
+            }
+            
+            nav ul li a {
+                padding: 8px 12px;
+                margin: 5px 0;
+            }
+        }
+
+        /* Add print styles for those who want to print the invitation */
+        @media print {
+            nav, button, .add-to-calendar {
+                display: none !important;
+            }
+            
+            body {
+                background-image: none;
+                color: black;
+            }
+            
+            .page {
+                page-break-after: always;
+                min-height: auto;
+            }
+            
+            .countdown {
+                display: none;
             }
         }
     </style>
@@ -342,9 +501,9 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
+                <li><a href="#home" id="home-link">Home</a></li>
+                <li><a href="#schedule" id="schedule-link">Schedule</a></li>
+                <li><a href="#rsvp" id="rsvp-link">RSVP</a></li>
             </ul>
         </div>
     </nav>
@@ -359,6 +518,7 @@
             </div>
             
             <h2>Our Wedding</h2>
+            <div class="floral-divider"></div>
             <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 20px 0;">
                 <p style="margin-bottom: 20px; color: #5a5a5a; line-height: 1.8;">
                     We are thrilled to invite you to celebrate our wedding day with us. 
@@ -371,9 +531,12 @@
         </div>
     </div>
     
+    <div class="floral-divider"></div>
+    
     <div id="schedule" class="page">
         <div class="container">
             <h2>Wedding Day Schedule</h2>
+            <div class="floral-divider"></div>
             
             <div class="timeline">
                 <div class="event event-left">
@@ -409,9 +572,12 @@
         </div>
     </div>
     
+    <div class="floral-divider"></div>
+    
     <div id="rsvp" class="page">
         <div class="container">
             <h2>RSVP</h2>
+            <div class="floral-divider"></div>
             
             <div class="rsvp-form">
                 <form id="rsvpForm" action="https://formsubmit.co/salwan.aldhahab@gmail.com" method="POST">
@@ -422,7 +588,7 @@
                     <input type="hidden" name="_captcha" value="false">
                     
                     <!-- Specify return URL after submission -->
-                    <input type="hidden" name="_next" value="https://bahjatandmaryam.netlify.app/thanks.html">
+                    <input type="hidden" name="_next" value="https://bahjat-and-maryam-wedding.site/thanks.html">
 
                     <input type="hidden" name="_cc" value="silwan2899.k@gmail.com">
                     
@@ -467,6 +633,8 @@
             </div>
         </div>
     </div>
+    
+    <div class="floral-divider"></div>
     
     <footer>
         <div class="container">
@@ -572,6 +740,43 @@
         
         function createCalendarUrl(title, location, start, end) {
             return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&location=${encodeURIComponent(location)}`;
+        }
+        
+        // Enhanced navigation with active state tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            // Set first link as active initially
+            navLinks[0].classList.add('active');
+            
+            // Update active state on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Adjust navigation for touch devices
+        if ('ontouchstart' in window) {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.style.padding = '10px 15px';
+            });
         }
     </script>
 </body>
