@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahjat & Maryam | Wedding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="white"/><path d="M0,0 C50,20 80,50 100,100 C120,50 150,20 200,0 Z" fill="rgba(218,196,148,0.2)"/></svg>');
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(218,196,148,0.5);
+        }
+        
+        .names {
+            font-size: 3rem;
+            color: #806c46;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        
+        .ampersand {
+            display: block;
+            font-size: 2rem;
+            color: #b29e6b;
+            margin: 15px 0;
+        }
+        
+        .date {
+            font-size: 1.8rem;
+            color: #806c46;
+            margin: 20px 0;
+        }
+        
+        .location {
+            font-size: 1.3rem;
+            color: #a98c52;
+        }
+        
+        nav {
+            background-color: rgba(218,196,148,0.1);
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #806c46;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #b29e6b;
+        }
+        
+        .active {
+            border-bottom: 2px solid #b29e6b;
+        }
+        
+        .page {
+            padding: 60px 0;
+            min-height: 70vh;
+        }
+        
+        .page h2 {
+            text-align: center;
+            color: #806c46;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        
+        /* Schedule Page */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: rgba(218,196,148,0.7);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .event {
+            padding: 20px 30px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .event-left {
+            left: 0;
+        }
+        
+        .event-right {
+            left: 50%;
+        }
+        
+        .event::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #b29e6b;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .event-left::after {
+            right: -13px;
+        }
+        
+        .event-right::after {
+            left: -13px;
+        }
+        
+        .event-content {
+            padding: 20px 40px;
+            background-color: rgba(248, 243, 231, 0.7);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .event-content h3 {
+            color: #806c46;
+            margin-bottom: 10px;
+        }
+        
+        .event-content p.time {
+            color: #b29e6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* RSVP Page */
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(248, 243, 231, 0.7);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #806c46;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dac494;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #5a5a5a;
+        }
+        
+        .deadline {
+            text-align: center;
+            margin-top: 20px;
+            color: #a98c52;
+            font-style: italic;
+        }
+        
+        button {
+            background-color: #b29e6b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #806c46;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: rgba(218,196,148,0.1);
+            border-top: 1px solid rgba(218,196,148,0.5);
+        }
+        
+        .hashtag {
+            font-size: 1.2rem;
+            color: #b29e6b;
+        }
+        
+        .countdown {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .countdown-box {
+            background-color: rgba(218,196,148,0.2);
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #806c46;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #a98c52;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .names {
+                font-size: 2.2rem;
+            }
+            
+            .date {
+                font-size: 1.4rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .event {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .event-right {
+                left: 0;
+            }
+            
+            .event-left::after, .event-right::after {
+                left: 18px;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+            
+            <h1 class="names">BAHJAT NASRI</h1>
+            <span class="ampersand">&</span>
+            <h1 class="names">MARYAM ALDHAHAB</h1>
+            <div class="date">MAY 25, 2025</div>
+            <div class="location">Windsor, ON</div>
+            
+            <div class="countdown">
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <div id="days" class="countdown-number">48</div>
+                        <div class="countdown-label">days</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div id="hours" class="countdown-number">2</div>
+                        <div class="countdown-label">hours</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div id="minutes" class="countdown-number">31</div>
+                        <div class="countdown-label">minutes</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div id="seconds" class="countdown-number">16</div>
+                        <div class="countdown-label">seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div id="home" class="page">
+        <div class="container">
+            <div class="quote-section" style="text-align: center; padding: 30px 20px; background-color: rgba(248, 243, 231, 0.5); border-radius: 8px; margin-bottom: 40px;">
+                <p style="font-style: italic; font-size: 1.3rem; color: #806c46; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    "So they are no longer two, but one flesh. Therefore what God has joined together, let man not separate."
+                </p>
+                <p style="color: #a98c52; margin-top: 10px;">Mark 10:8-9</p>
+            </div>
+            
+            <h2>Our Wedding</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 20px 0;">
+                <p style="margin-bottom: 20px; color: #5a5a5a; line-height: 1.8;">
+                    We are thrilled to invite you to celebrate our wedding day with us. 
+                    It's a day we've been dreaming of, and we can't wait to share it with our closest friends and family.
+                </p>
+                <p style="color: #5a5a5a; line-height: 1.8;">
+                    Join us for a day of love, joy, and celebration as we begin our journey together as husband and wife.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="schedule" class="page">
+        <div class="container">
+            <h2>Wedding Day Schedule</h2>
+            
+            <div class="timeline">
+                <div class="event event-left">
+                    <div class="event-content">
+                        <h3>Ceremony</h3>
+                        <p class="time">4:00 PM - 5:30 PM</p>
+                        <p><strong>Join us as we exchange vows and celebrate our union.</strong></p>
+                        <p style="margin-top: 20px;"></p>
+                        <p><strong>Holy Family Chaldean Catholic Church</strong></p>
+                        <p><strong>686 Marentette Ave, Windsor, ON N9A 1Z4, Canada</strong></p>
+                        <p class="event-links">
+                            <a href="https://maps.google.com/?q=686+Marentette+Ave,+Windsor,+ON+N9A+1Z4,+Canada" target="_blank">Map</a> | 
+                            <a href="#" class="add-to-calendar" data-event="ceremony">Add to calendar</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="event event-right">
+                    <div class="event-content">
+                        <h3>Wedding Party</h3>
+                        <p class="time">7:00 PM</p>
+                        <p><strong>Dinner, speeches, and dancing to celebrate our new journey together.</strong></p>
+                        <p style="margin-top: 20px;"></p>
+                        <p><strong>Ciociaro Club</strong></p>
+                        <p><strong>3745 N Talbot Rd, Oldcastle (Windsor), ON N0R 1L0, Canada</strong></p>
+                        <p class="event-links">
+                            <a href="https://maps.google.com/?q=3745+N+Talbot+Rd,+Oldcastle,+ON+N0R+1L0,+Canada" target="_blank">Map</a> | 
+                            <a href="#" class="add-to-calendar" data-event="reception">Add to calendar</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="rsvp" class="page">
+        <div class="container">
+            <h2>RSVP</h2>
+            
+            <div class="rsvp-form">
+                <form id="rsvpForm" action="https://formsubmit.co/salwan.aldhahab@gmail.com" method="POST">
+                    <!-- FormSubmit anti-spam honeypot field -->
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <!-- Disable captcha -->
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- Specify return URL after submission -->
+                    <input type="hidden" name="_next" value="https://bahjatandmaryam.netlify.app/thanks.html">
+
+                    <input type="hidden" name="_cc" value="silwan2899.k@gmail.com">
+                    
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attendance">Will you be attending?</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Joyfully Accept</option>
+                            <option value="no">Regretfully Decline</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests (including yourself)</label>
+                        <input type="number" id="guests" name="guests" min="1" max="10" value="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message to the Couple (Optional)</label>
+                        <input type="text" id="message" name="message">
+                    </div>
+                    
+                    <button type="submit">Submit RSVP</button>
+                </form>
+                
+                <p class="deadline">Please RSVP by May 11, 2025</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p class="hashtag">#bahjat&maryam</p>
+        </div>
+    </footer>
+
+    <script>
+        // RSVP deadline check
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            const today = new Date();
+            const deadline = new Date('May 11, 2025');
+            
+            if (today > deadline) {
+                e.preventDefault();
+                alert('We apologize, but the RSVP deadline (May 11, 2025) has passed.');
+                return false;
+            }
+            // Let the form submit naturally to FormSubmit's endpoint
+            return true;
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            const weddingDate = new Date('May 25, 2025 14:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+        
+        // Update countdown every second
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        
+        // Initial countdown update
+        updateCountdown();
+        
+        // Navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Add to Calendar functionality
+        document.querySelectorAll('.add-to-calendar').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const eventType = this.getAttribute('data-event');
+                let calendarEvent;
+                
+                if (eventType === 'ceremony') {
+                    // Format: YYYYMMDDTHHMMSS/YYYYMMDDTHHMMSS
+                    calendarEvent = createCalendarUrl(
+                        'Bahjat & Maryam Wedding Ceremony',
+                        'Holy Family Chaldean Catholic Church, 686 Marentette Ave, Windsor, ON',
+                        '20250525T160000',
+                        '20250525T173000'
+                    );
+                } else if (eventType === 'reception') {
+                    calendarEvent = createCalendarUrl(
+                        'Bahjat & Maryam Wedding Reception',
+                        'Ciociaro Club, 3745 N Talbot Rd, Oldcastle (Windsor), ON',
+                        '20250525T190000',
+                        '20250525T230000'  // Assuming end time is 11:00 PM
+                    );
+                }
+                
+                window.open(calendarEvent);
+            });
+        });
+        
+        function createCalendarUrl(title, location, start, end) {
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&location=${encodeURIComponent(location)}`;
+        }
+    </script>
+</body>
+</html>
